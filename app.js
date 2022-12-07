@@ -8,6 +8,7 @@ var items=["Buy Food","Cook Food","Eat Food"];
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded( {extended: true}));
+app.use(express.static("public"));
 
 app.get("/", function(req, res) {
 
@@ -22,7 +23,7 @@ app.get("/", function(req, res) {
   };
   var day = today.toLocaleDateString("en-US", options);
 
-  res.render("list", {kindOfDay: day, newListItems: items});
+  res.render("list", {listTitle: day, newListItems: items});
 
 });
 app.post("/", function(req, res){
